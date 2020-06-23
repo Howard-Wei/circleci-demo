@@ -6,6 +6,9 @@ jobs:
     branches:
       only: master
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "54:ec:32:65:d7:bd:c1:9b:50:9b:12:cf:f7:85:e5:ba"
       - checkout
       - run:
           name: Install
