@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+    branches:
+      only: master
+    steps:
+      - run:
+          name: Install
+          command: npm install
+      - run:
+          name: build
+          command: npm run build
