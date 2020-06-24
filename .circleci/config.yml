@@ -10,9 +10,22 @@ jobs:
           fingerprints:
             - "54:ec:32:65:d7:bd:c1:9b:50:9b:12:cf:f7:85:e5:ba"
       - checkout
+      - restore_cache:
+          keys:
+            - node_dependences
       - run:
           name: Install
           command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: node_dependences
       - run:
           name: build
           command: npm run build
+      - run:
+          name: Prepare shell commands
+          command: chmod -x ./scripts/deploy.sh
+      - run:
+          name: Deploy pages to Github
+          command: ./scripts/deploy.sh
